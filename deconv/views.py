@@ -9,14 +9,14 @@ import cv2
 
 # Create your views here.
 filename="garden.png"
-image_height=465
-image_width=620
+image_height=400
+image_width=600
 
 class IndexView(View):
     def get(self,request):
         global filename
         filename="garden.png"
-        return render(request,"deconv/index.html",{"before_image":filename, "after_image":"new"+filename, "sigma":"", "epsilon":""})
+        return render(request,"deconv/index.html",{"before_image":filename, "after_image":"new"+filename, "sigma":"", "epsilon":"", "t":"", "select":1})
     def post(self,request):
         global filename
         try:
@@ -34,12 +34,21 @@ class IndexView(View):
         except:
             print("ファイルは存在しません")
         sigma=request.POST['sigma']
-        epsilon=request.POST['epsilon']
+        try:
+            epsilon=request.POST['epsilon']
+            t=1
+        except:
+            t=request.POST['t']
+            epsilon=1
+        if request.POST['algorithm']=="standard":
+            select=0
+        else:
+            select=1
         create_gaussian(image_width,image_height,float(sigma),"static/deconv/image/gaussian.png")
         create_filtered("static/deconv/image/"+filename,
                         "static/deconv/image/new"+filename,
                         "static/deconv/image/gaussian.png",
-                        select=1,t=1,epsilon=float(epsilon))
-        return render(request,"deconv/index.html",{"before_image":filename, "after_image":"new"+filename, "sigma":sigma, "epsilon":epsilon})
+                        select=select,input_t=float(t),epsilon=float(epsilon))
+        return render(request,"deconv/index.html",{"before_image":filename, "after_image":"new"+filename, "sigma":sigma, "epsilon":epsilon, "t":t, "select":select})
 
 index=IndexView.as_view()

@@ -1,10 +1,11 @@
 .input_area{
     margin: 10px 0px;
+
 }
 
 .input_area button{
     margin-top: 10px;
-    margin-left: 20px;
+    margin-left: 5px;
     width: 100px;
     background-color: rgb(240, 240, 240);
     border: solid 1px;
