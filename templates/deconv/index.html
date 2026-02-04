@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'deconv/css/index.css' %}">
+</head>
+<body>
+    <h1>Wiener filter</h1>
+ 
+
+    <form id="propertys" method="Post" class=input_area enctype="multipart/form-data">
+        {% csrf_token %}
+        画像：<input type="file" id="image" name="image"><br>
+        σ=<input type="number" id="sigma" name="sigma" step="0.01" value="{{ sigma }}">：1～20程度 (ボケ具合)<br>
+        ε=<input type="number" id="epsilon" name="epsilon" step="0.01" value="{{ epsilon }}">：1～10程度 (10の指数で入力)<br>
+        <button type="submit">適用</button>
+    </form>
+    {% load static %}
+    <dev class="img_area">
+        <img src="{% static 'deconv/image/' %}{{ before_image }}">
+        <div class=arrow>→</div>
+        <img src="{% static 'deconv/image/' %}{{ after_image }}">
+    </dev>
+
+</body>
+</html>

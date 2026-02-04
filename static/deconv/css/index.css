@@ -1,0 +1,35 @@
+.input_area{
+    margin: 10px 0px;
+}
+
+.input_area button{
+    margin-top: 10px;
+    margin-left: 20px;
+    width: 100px;
+    background-color: rgb(240, 240, 240);
+    border: solid 1px;
+    border-radius: 2px;
+}
+
+.input_area input{
+    height: 120%;
+    margin-bottom: 5px;
+}
+
+.img_area{
+    display: flex;
+    align-items: center;
+}
+
+.img_area .arrow{
+    font-size:4rem;
+    margin: 0px 15px;
+}
+
+body{
+    padding: 0px 10px;
+}
+
+.img_area img{
+    width: 400px;
+}
